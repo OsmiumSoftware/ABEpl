@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<!--
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	index.html
+	ABE Payload Loader (4.0.0-pre0.1)
+	
+	Copyright 2024 OsmiumSoftware
+    Licenced under GNU LGPL-3.0-or-later
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    This file is part of ABEpl.
+
+    ABEpl is free software: you can redistribute it and/or modify it under
+    the terms of the GNU General Public License as published by the Free
+    Software Foundation, either version 3 of the License, or (at your option) 
+    any later version.
+
+    ABEpl is distributed in the hope that it will be useful, but WITHOUT ANY 
+    WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+    FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along 
+    with ABEpl. If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<head>
+	<style>
+	
+	body {
+		background-color:black;
+		color:white;
+		font-family:Monospace;
+		background-image: url("extras/bg.png");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+	
+	</style>
+</head>
+<body>
+
+	<h1>ABEpl4 prototype (4.0.0-pre0.1)</h1>
+	<button id="machine_start">Start Machine</button>
+	<hr>
+	
+	<div style="background-color:gray;">
+		<h2>Machine Preferences</h2>
+		
+		<div>
+			Preferences JSON 
+			<input type="text" placeholder="{}" id="json_preferences">
+			<button id="save_json_preferences">SAVE</button>
+			<button id="load_json_preferences">LOAD</button>
+			<button id="purge_json_preferences">PURGE</button>
+		</div>
+	</div>
+	
+	<script src="pl.js"></script>
+</body>

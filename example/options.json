@@ -1,0 +1,11 @@
+{
+	"win": {
+		"title": "EXAMPLE MACHINE",
+		"width": 600,
+		"height": 400,
+		"icon": "example/tos.png",
+		"defaultBackground": "black",
+		"defaultCSS": true
+	},
+	"runtimeURL": "example/runtime.js"
+}
