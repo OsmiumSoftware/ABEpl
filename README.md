@@ -1,11 +1,11 @@
-#ABE Payload Loader (4.0.0-pre0.1)
-##LICENCE
+# ABE Payload Loader (4.0.0-pre0.1)
+## LICENCE
 This project is distributed under the GPLv3 or above licence. See COPYING.txt for more details.
 
-##NOTICE!
+## NOTICE!
 This product is in VERY early development! Theres a good chance that the API will change.
 
-##Usage:
+## Usage:
 1. Clone this project and open index.html.
 2. Go down to Preferences.JSON and paste the JSON containing the machines preferences (a test machine can be found in tos/options.json)
 3. Press SAVE and start the machine.
@@ -13,7 +13,7 @@ This product is in VERY early development! Theres a good chance that the API wil
 
 Also, place a png called `bg.png` into the extras folder to set a background.
 
-##How to make a custom machine:
+## How to make a custom machine:
 NOTE: See notice at the top of the page!
 This is mostly just for messing around and testing things until the API is finished.
 1. Make an options.json file. This contains the options needed to boot the machine. (see #Options.json)
@@ -22,7 +22,7 @@ This is mostly just for messing around and testing things until the API is finis
 5. Load it up with the steps in #Usage.
 4. Profit. (until a few update were everything changes :skull:)
 
-##Options.json
+## Options.json
 As of right now, its just the minimum to do things:
 ```
 {
