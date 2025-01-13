@@ -26,12 +26,16 @@ console.log("[ABEpl4] Script Loading Started");
 
 const map = {
 	startMachine: document.getElementById("machine_start"),
+	help: {
+		readme: document.getElementById("popup_readme")
+	},
 	preferences: {
 		JSON: {
 			input: document.getElementById("json_preferences"),
 			save: document.getElementById("save_json_preferences"),
 			load: document.getElementById("load_json_preferences"),
-			purge: document.getElementById("purge_json_preferences")
+			purge: document.getElementById("purge_json_preferences"),
+			minify: document.getElementById("minify_json_preferences")
 		}
 	}
 };
@@ -41,8 +45,8 @@ function getValueFromTextInput(input) {
 }
 
 //popup
-function popup(title, width, height, icon="about:blank", x=0, y=0) {
-	var win = window.open("about:blank", "_blank", "popup,width=" + width + ",height=" + height + ",top=" + y + ",left=" + x);
+function popup(title, width, height, icon="about:blank", x=0, y=0, url="about:blank") {
+	var win = window.open(url, "_blank", "popup,width=" + width + ",height=" + height + ",top=" + y + ",left=" + x);
 	win.document.title = title;
 	let favicon = win.document.createElement("link");
 	favicon.setAttribute("rel", "icon");
@@ -52,6 +56,14 @@ function popup(title, width, height, icon="about:blank", x=0, y=0) {
 	return win;
 }
 
+//popup readme
+map.help.readme.addEventListener("click", function() {
+	console.log(`[ABEpl4 - Help] Opening README.MD`);
+	let win = popup("ABEpl Readme", 600, 400);
+	win.location.href = (window.location.origin + window.location.pathname.slice(0, window.location.pathname.lastIndexOf('/'))) + "/README.md";
+});
+
+//JSON preference input controls
 map.preferences.JSON.save.addEventListener("click", function() {
 	const val = getValueFromTextInput(map.preferences.JSON.input);
 	console.log(`[ABEpl4 - Preferences] Saving JSON Preferences to localstorage <JSONPREF = "${val}">`);
@@ -68,6 +80,12 @@ map.preferences.JSON.purge.addEventListener("click", function() {
 	console.log(`[ABEpl4 - Preferences] Purging JSON Preferences from localstorage <JSONPREF>`);
 	localStorage.removeItem("JSONPREF", val);
 	map.preferences.JSON.input.value = "Purged JSON storage!";
+});
+
+map.preferences.JSON.minify.addEventListener("click", function() {
+	const val = getValueFromTextInput(map.preferences.JSON.input);
+	console.log(`[ABEpl4 - Preferences] Minifying JSON Preferences from localstorage <JSONPREF>`);
+	map.preferences.JSON.input.value = JSON.stringify(JSON.parse(val));
 });
 
 //starting machine
