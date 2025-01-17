@@ -21,7 +21,6 @@
     You should have received a copy of the GNU General Public License along 
     with ABEpl. If not, see <https://www.gnu.org/licenses/>.
 */
-
 console.log("[ABEpl4] Script Loading Started");
 
 const map = {
@@ -84,7 +83,7 @@ map.preferences.JSON.purge.addEventListener("click", function() {
 
 map.preferences.JSON.minify.addEventListener("click", function() {
 	const val = getValueFromTextInput(map.preferences.JSON.input);
-	console.log(`[ABEpl4 - Preferences] Minifying JSON Preferences from localstorage <JSONPREF>`);
+	console.log(`[ABEpl4 - Preferences] Minifying JSON Preferences from input. DONT FORGET TO CLICK <SAVE>!!!`);
 	map.preferences.JSON.input.value = JSON.stringify(JSON.parse(val));
 });
 
