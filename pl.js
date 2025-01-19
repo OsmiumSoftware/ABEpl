@@ -26,7 +26,8 @@ console.log("[ABEpl4] Script Loading Started");
 const map = {
 	startMachine: document.getElementById("machine_start"),
 	help: {
-		readme: document.getElementById("popup_readme")
+		readme: document.getElementById("popup_readme"),
+		license: document.getElementById("popup_license")
 	},
 	preferences: {
 		JSON: {
@@ -34,7 +35,8 @@ const map = {
 			save: document.getElementById("save_json_preferences"),
 			load: document.getElementById("load_json_preferences"),
 			purge: document.getElementById("purge_json_preferences"),
-			minify: document.getElementById("minify_json_preferences")
+			minify: document.getElementById("minify_json_preferences"),
+			status: document.getElementById("status_json_preferences")
 		}
 	}
 };
@@ -43,7 +45,7 @@ function getValueFromTextInput(input) {
 	return input.value === "" ? (input.placeholder === "" ? "" : input.placeholder) : input.value;
 }
 
-//popup
+//ABEPOPUP
 function popup(title, width, height, icon="about:blank", x=0, y=0, url="about:blank") {
 	var win = window.open(url, "_blank", "popup,width=" + width + ",height=" + height + ",top=" + y + ",left=" + x);
 	win.document.title = title;
@@ -55,11 +57,40 @@ function popup(title, width, height, icon="about:blank", x=0, y=0, url="about:bl
 	return win;
 }
 
-//popup readme
+function abCloak(win, url) {
+	//clean up css
+	win.document.body.style.margin = '0';
+	win.document.body.style.height = '100vh';
+	
+	//AB CLOAK :>
+	let iframe = document.createElement("iframe");
+	
+	iframe.style.border = 'none';
+	iframe.style.width = '100%';
+	iframe.style.height = '100%';
+	iframe.style.margin = '0';
+	
+	iframe.src = url;
+	win.document.body.appendChild(iframe);
+	return win;
+}
+
+function changeFileNameFromFullURL(newFileName) {
+	return (window.location.origin + window.location.pathname.slice(0, window.location.pathname.lastIndexOf('/'))) + newFileName;
+}
+
+//popup README
 map.help.readme.addEventListener("click", function() {
 	console.log(`[ABEpl4 - Help] Opening README.MD`);
 	let win = popup("ABEpl Readme", 600, 400);
-	win.location.href = (window.location.origin + window.location.pathname.slice(0, window.location.pathname.lastIndexOf('/'))) + "/README.md";
+	abCloak(win, changeFileNameFromFullURL("/README.md"));
+});
+
+//popup license
+map.help.license.addEventListener("click", function() {
+	console.log(`[ABEpl4 - Help] Opening LICENSE.TXT`);
+	let win = popup("GNU GPLv3", 600, 400);
+	abCloak(win, changeFileNameFromFullURL("/COPYING.txt"));
 });
 
 //JSON preference input controls
@@ -67,24 +98,31 @@ map.preferences.JSON.save.addEventListener("click", function() {
 	const val = getValueFromTextInput(map.preferences.JSON.input);
 	console.log(`[ABEpl4 - Preferences] Saving JSON Preferences to localstorage <JSONPREF = "${val}">`);
 	localStorage.setItem("JSONPREF", val);
+	map.preferences.JSON.status.innerText = "SAVED TO QUICKSTORE! (READY TO BOOT)";
+	map.preferences.JSON.status.style.color = "lime";
 });
 
 map.preferences.JSON.load.addEventListener("click", function() {
 	console.log(`[ABEpl4 - Preferences] Loading JSON Preferences from localstorage <JSONPREF>`);
 	map.preferences.JSON.input.value = localStorage.getItem("JSONPREF");
+	map.preferences.JSON.status.innerText = "LOADED FROM QUICKSTORE!";
+	map.preferences.JSON.status.style.color = "darkblue";
 });
 
 map.preferences.JSON.purge.addEventListener("click", function() {
 	const val = getValueFromTextInput(map.preferences.JSON.input);
 	console.log(`[ABEpl4 - Preferences] Purging JSON Preferences from localstorage <JSONPREF>`);
 	localStorage.removeItem("JSONPREF", val);
-	map.preferences.JSON.input.value = "Purged JSON storage!";
+	map.preferences.JSON.status.innerText = "PURGED QUICKSTORE!";
+	map.preferences.JSON.status.style.color = "darkred";
 });
 
 map.preferences.JSON.minify.addEventListener("click", function() {
 	const val = getValueFromTextInput(map.preferences.JSON.input);
 	console.log(`[ABEpl4 - Preferences] Minifying JSON Preferences from input. DONT FORGET TO CLICK <SAVE>!!!`);
 	map.preferences.JSON.input.value = JSON.stringify(JSON.parse(val));
+	map.preferences.JSON.status.innerText = "INPUT MINIFIED! (DONT FORGET TO SAVE)";
+	map.preferences.JSON.status.style.color = "yellow";
 });
 
 //starting machine
