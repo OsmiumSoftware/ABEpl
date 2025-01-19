@@ -23,7 +23,7 @@
     You should have received a copy of the GNU General Public License along 
     with ABEpl. If not, see <https://www.gnu.org/licenses/>.
 -->
-
+<html>
 <head>
 	<style>
 	
@@ -43,7 +43,31 @@
 
 	<h1>ABEpl4 prototype (4.0.0-pre0.1)</h1>
 	<button id="machine_start">Start Machine</button>
-	<hr>
+	
+	<div style="background-color:gray;">
+		<h2>MACHINE STATUS</h2>
+		
+		<div>
+			<div style="background-color:darkgray;">[<span style="background-color:darkgreen;">TRUE!</span>] DEBUG MODE? (ALWAYS TRUE SINCE THIS IS EARLY BUILD)</div>
+			<div style="background-color:darkgray;">[<span style="background-color:darkred;">FALSE</span>] STORAGE API READY? (ALWAYS FALSE, NOT USED YET)</div>
+		</div>
+	</div>
+	
+	<br><hr>
+	
+	<div style="background-color:gray;">
+		<h2>Help</h2>
+		
+		<div>
+			<button id="popup_readme">README</button>
+			<button disabled>MANUAL (COMMING SOONISH)</button>
+			<button disabled>DOCUMENTATION (HELL NAWWW ill do it later)</button>
+			<br><br>
+			<button id="popup_license">VIEW LICENSE: GNU GPLv3</button>
+		</div>
+	</div>
+	
+	<br><hr>
 	
 	<div style="background-color:gray;">
 		<h2>Machine Preferences</h2>
@@ -51,11 +75,25 @@
 		<div>
 			Preferences JSON 
 			<input type="text" placeholder="{}" id="json_preferences">
-			<button id="save_json_preferences">SAVE</button>
-			<button id="load_json_preferences">LOAD</button>
-			<button id="purge_json_preferences">PURGE</button>
+			<button id="save_json_preferences">QUICKSAVE</button>
+			<button id="load_json_preferences">QUICKLOAD</button>
+			<button id="purge_json_preferences">PURGE QUICKSTORE</button>
+			<button id="minify_json_preferences">MINIFY INPUT</button>
+			INPUT STATUS: <span style="color:silver;" id="status_json_preferences">AWAITING...</span>
+		</div>
+	
+		<div style="background-color:silver;margin:5px;">
+			<h2>Machine Listing (NOT IMPLEMENTED YET!)</h2>
+			<button>REFRESH</button>
+			<div>
+				<div style="background-color:darkgray;">TEMPLATE MACHINE -> <button>LOAD</button><button>PURGE FROM LISTING</button></div>
+			</div>
 		</div>
 	</div>
 	
+	<script src="extras/eruda/eruda.js"></script>
+	<script src="extras/eruda/loader.js"></script>
+		
 	<script src="pl.js"></script>
 </body>
+</html>
